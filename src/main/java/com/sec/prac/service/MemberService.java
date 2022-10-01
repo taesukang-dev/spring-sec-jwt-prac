@@ -29,8 +29,6 @@ public class MemberService {
         Member member = memberRepository.save(request.toEntity());
         member.encodePassword(passwordEncoder);
 
-        log.info("member role = {}", member.getRole());
-
         return member.getId();
     }
 

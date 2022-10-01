@@ -27,7 +27,7 @@ public class MemberSignUpRequest {
     private int age;
 
     @NotBlank(message = "비밀번호를 입력해주세요.")
-    @Pattern(regexp = " ^(?=.*[A-Za-z])(?=.*\\d)(?=.*[~!@#$%^&*()+|=])[A-Za-z\\d~!@#$%^&*()+|=]{8,30}$",
+    @Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[~!@#$%^&*()+|=])[A-Za-z\\d~!@#$%^&*()+|=]{8,30}$",
     message = "비밀번호는 8 ~ 30 이면서 특수문자를 포함해야 합니다.")
     private String password;
 
