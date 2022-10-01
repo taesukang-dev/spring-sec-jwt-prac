@@ -35,7 +35,6 @@ public class MemberSignUpRequest {
 
     private Role role;
 
-    @Builder
     public Member toEntity() {
         return Member.of(email, nickname, age, password, Role.USER);
     }

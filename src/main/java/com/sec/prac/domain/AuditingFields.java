@@ -15,7 +15,6 @@ import java.time.LocalDateTime;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
 public class AuditingFields {
