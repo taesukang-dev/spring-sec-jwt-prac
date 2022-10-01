@@ -11,7 +11,6 @@ import org.hibernate.validator.constraints.Range;
 import javax.validation.constraints.*;
 
 @Data
-@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class MemberSignUpRequest {
@@ -34,6 +33,10 @@ public class MemberSignUpRequest {
     private String checkedPassword;
 
     private Role role;
+
+    public static MemberSignUpRequest of(String email, String nickname, int age, String password, String checkedPassword, Role role) {
+        return new MemberSignUpRequest(email, nickname, age, password, checkedPassword, role);
+    }
 
     public Member toEntity() {
         return Member.of(email, nickname, age, password, Role.USER);
