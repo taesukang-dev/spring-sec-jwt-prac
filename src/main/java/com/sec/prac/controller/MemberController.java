@@ -1,5 +1,6 @@
 package com.sec.prac.controller;
 
+import com.sec.prac.dto.request.MemberSignInRequest;
 import com.sec.prac.dto.request.MemberSignUpRequest;
 import com.sec.prac.service.MemberService;
 import lombok.RequiredArgsConstructor;
@@ -22,5 +23,8 @@ public class MemberController {
         return memberService.signUp(memberSignUpRequest);
     }
 
-
+    @PostMapping("/login")
+    public String login(@RequestBody MemberSignInRequest memberSignInRequest) {
+        return memberService.login(memberSignInRequest);
+    }
 }
