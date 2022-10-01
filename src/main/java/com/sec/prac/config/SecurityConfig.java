@@ -1,5 +1,7 @@
 package com.sec.prac.config;
 
+import com.sec.prac.jwt.JwtSecurityConfig;
+import com.sec.prac.jwt.JwtTokenProvider;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -13,6 +15,12 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig {
+    private final JwtTokenProvider jwtTokenProvider;
+
+    public SecurityConfig(JwtTokenProvider jwtTokenProvider) {
+        this.jwtTokenProvider = jwtTokenProvider;
+    }
+
     @Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http
@@ -32,7 +40,11 @@ public class SecurityConfig {
                         .mvcMatchers("/member").hasRole("USER")
                         .mvcMatchers("/admin").hasRole("ADMIN")
                         .anyRequest().authenticated()
-                ).build();
+                )
+
+                .apply(new JwtSecurityConfig(jwtTokenProvider))
+                .and()
+                .build();
     }
 
     @Bean
